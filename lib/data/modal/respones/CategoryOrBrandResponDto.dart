@@ -1,43 +1,45 @@
-import 'package:untitled13/domain/entity/CategoryResponEntity.dart';
+// ignore_for_file: file_names
 
-class CategoryResponseDto extends CategoryResponEntity{
-  CategoryResponseDto({
-      super.results,
-      this.metadata,
+import 'package:untitled13/domain/entity/CategoryOrBrandResponEntity.dart';
+
+class CategoryOrBrandResponseDto extends CategoryOrBrandResponseEntity {
+  CategoryOrBrandResponseDto({
+    super.results,
+    this.metadata,
     this.message,
     this.statusMsg,
-      super.data,});
+    super.data,
+  });
 
-  CategoryResponseDto.fromJson(dynamic json) {
+  CategoryOrBrandResponseDto.fromJson(dynamic json) {
     results = json['results'];
     message = json['message'];
     statusMsg = json['statusMsg'];
-    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data?.add(CategoryDto.fromJson(v));
+        data?.add(CategoryOrBrandDto.fromJson(v));
       });
     }
   }
   Metadata? metadata;
   String? message;
   String? statusMsg;
-
-
-
 }
 
-class CategoryDto extends CategoryEntity {
-  CategoryDto({
-      super.id,
+class CategoryOrBrandDto extends CategoryOrBrandEntity {
+  CategoryOrBrandDto({
+    super.id,
     super.name,
     super.slug,
     super.image,
-      this.createdAt, 
-      this.updatedAt,});
+    this.createdAt,
+    this.updatedAt,
+  });
 
-  CategoryDto.fromJson(dynamic json) {
+  CategoryOrBrandDto.fromJson(dynamic json) {
     id = json['_id'];
     name = json['name'];
     slug = json['slug'];
@@ -59,14 +61,14 @@ class CategoryDto extends CategoryEntity {
     map['updatedAt'] = updatedAt;
     return map;
   }
-
 }
 
 class Metadata {
   Metadata({
-      this.currentPage, 
-      this.numberOfPages, 
-      this.limit,});
+    this.currentPage,
+    this.numberOfPages,
+    this.limit,
+  });
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -84,5 +86,4 @@ class Metadata {
     map['limit'] = limit;
     return map;
   }
-
 }

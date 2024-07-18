@@ -1,30 +1,18 @@
-import 'package:untitled13/domain/entity/CategoryOrBrandResponEntity.dart';
+import 'package:untitled13/domain/entity/ProductResponseEntity.dart';
 import 'package:untitled13/domain/failures.dart';
 
-abstract class HomeTabState{}
-class HomeTabCategoryInitialState extends HomeTabState{}
-class HomeTabCategoryLoadingState extends HomeTabState{
+abstract class ListTabState{}
+class ListTabProductInitialState extends ListTabState{}
+class ListTabProductLoadingState extends ListTabState{
   String? loadingMessage;
-  HomeTabCategoryLoadingState({required this.loadingMessage});
+  ListTabProductLoadingState({required this.loadingMessage});
 }
-class HomeTabCategoryErrorState extends HomeTabState{
+class ListTabProductErrorState extends ListTabState{
   Failures error;
-  HomeTabCategoryErrorState({required this.error});
+  ListTabProductErrorState({required this.error});
 }
-class HomeTabCategorySuccessState extends HomeTabState{
-  CategoryOrBrandResponseEntity categoryResponEntity;
-  HomeTabCategorySuccessState({required this.categoryResponEntity});
+class ListTabProductSuccessState extends ListTabState{
+  ProductResponseEntity productResponseEntity;
+  ListTabProductSuccessState({required this.productResponseEntity});
 }
-class HomeTabBrandInitialState extends HomeTabState{}
-class HomeTabBrandLoadingState extends HomeTabState{
-  String? loadingMessage;
-  HomeTabBrandLoadingState({required this.loadingMessage});
-}
-class HomeTabBrandErrorState extends HomeTabState{
-  Failures error;
-  HomeTabBrandErrorState({required this.error});
-}
-class HomeTabBrandSuccessState extends HomeTabState{
-  CategoryOrBrandResponseEntity brandResponseEntity;
-  HomeTabBrandSuccessState({required this.brandResponseEntity});
-}
+

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled13/my_theme.dart';
 
 class FavoriteTab extends StatelessWidget {
+  const FavoriteTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,39 +20,38 @@ class FavoriteTab extends StatelessWidget {
                   flex: 4,
                   child: TextFormField(
                       decoration: InputDecoration(
-                        prefixIcon: Padding(
-                          padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width*0.06),
-                          child: Icon(Icons.search,size: 35,color: MyTheme.primaryColor,),
-                        ),
-                        hintText: "what do you search for?",
-                        hintStyle:Theme.of(context).textTheme.titleSmall,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
-                              color: MyTheme.primaryColor
-                          ),
-
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: BorderSide(
-                              color: MyTheme.primaryColor
-                          ),
-
-                        ),
-                      )
-                  ),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.06),
+                      child: Icon(
+                        Icons.search,
+                        size: 35,
+                        color: MyTheme.primaryColor,
+                      ),
+                    ),
+                    hintText: "what do you search for?",
+                    hintStyle: Theme.of(context).textTheme.titleSmall,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      borderSide: BorderSide(color: MyTheme.primaryColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      borderSide: BorderSide(color: MyTheme.primaryColor),
+                    ),
+                  )),
                 ),
                 Expanded(
                     flex: 1,
-                    child:ImageIcon(AssetImage("assets/images/icon_cart.png"),color: MyTheme.primaryColor,)),
+                    child: ImageIcon(
+                      const AssetImage("assets/images/icon_cart.png"),
+                      color: MyTheme.primaryColor,
+                    )),
               ],
             ),
-
           ],
         ),
       ),
     );
-
   }
 }

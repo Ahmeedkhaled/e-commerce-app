@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:untitled13/domain/entity/CategoryResponEntity.dart';
+import 'package:untitled13/domain/entity/CategoryOrBrandResponEntity.dart';
 
+// ignore: must_be_immutable
 class CategoryItem extends StatelessWidget {
-  CategoryEntity categoryEntity;
-   CategoryItem({super.key,required this.categoryEntity});
+  CategoryOrBrandEntity categoryEntity;
+  CategoryItem({super.key, required this.categoryEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +14,19 @@ class CategoryItem extends StatelessWidget {
         Expanded(
           flex: 8,
           child: CircleAvatar(
-            radius: MediaQuery.of(context).size.height*0.04,
-            backgroundImage: NetworkImage(categoryEntity.image??""),
+            radius: MediaQuery.of(context).size.height * 0.04,
+            backgroundImage: NetworkImage(categoryEntity.image ?? ""),
           ),
         ),
         Expanded(
-          flex: 2,
-            child: Text(categoryEntity.name??"",
-            textWidthBasis: TextWidthBasis.longestLine,
-            textAlign: TextAlign.center
-            ,style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontSize: 12,
-                  fontWeight: FontWeight.w400
-                )
-            )
-        ),
+            flex: 2,
+            child: Text(categoryEntity.name ?? "",
+                textWidthBasis: TextWidthBasis.longestLine,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(fontSize: 12, fontWeight: FontWeight.w400))),
       ],
     );
   }

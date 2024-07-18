@@ -6,6 +6,8 @@ import 'package:untitled13/ui/auth/register/register.dart';
 class LoginScreen extends StatefulWidget {
   static const String routeName = "login";
 
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -30,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     "Route",
                     style: TextStyle(
@@ -39,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.white),
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(vertical: 12),
                   child: Text(
                     "Welcome Back To Route",
@@ -49,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                Text(
+                const Text(
                   "Please sign in with yout mail",
                   style: TextStyle(
                     color: Colors.white70,
@@ -57,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Form(
                     key: formKey,
                     child: Column(
@@ -72,10 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return "please enter your email";
                               }
                               bool emailValid = RegExp(
-                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                   .hasMatch(value);
                               if (!emailValid) {
-                                return "pelese enter valid email";
+                                return "please enter valid email";
                               }
                               return null;
                             }),
@@ -86,11 +88,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   setState(() {});
                                 },
                                 icon: isObscure
-                                    ? Icon(Icons.visibility_off)
-                                    : Icon(Icons.visibility)),
+                                    ? const Icon(Icons.visibility_off)
+                                    : const Icon(Icons.visibility)),
                             keyBoardType: TextInputType.number,
                             fieldName: "Password",
-                            IsObscure: isObscure,
+                            isObscure: isObscure,
                             controller: passwordController,
                             hintText: "enter Your Password",
                             validator: (value) {
@@ -103,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
                               return null;
                             }),
-                        Text(
+                        const Text(
                           "ForgetPassword",
                           style: TextStyle(fontSize: 15, color: Colors.white),
                           textAlign: TextAlign.end,
@@ -115,7 +117,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             validator();
                           },
-                          child: Padding(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                const WidgetStatePropertyAll(Colors.white),
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12))),
+                          ),
+                          child: const Padding(
                             padding: EdgeInsets.all(15.0),
                             child: Text(
                               "Login",
@@ -123,36 +132,30 @@ class _LoginScreenState extends State<LoginScreen> {
                                   TextStyle(color: Colors.blue, fontSize: 18),
                             ),
                           ),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.white),
-                            shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12))),
-                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "Dont have an account? ",
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
                               textAlign: TextAlign.end,
                             ),
                             InkWell(
-                              onTap: (){
-                                Navigator.of(context).pushNamed(RegisterScreen.routeName);
-                              },
-                                child: Text(
-                              "Create Account?",
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
-                              textAlign: TextAlign.end,
-                            )),
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .pushNamed(RegisterScreen.routeName);
+                                },
+                                child: const Text(
+                                  "Create Account?",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  textAlign: TextAlign.end,
+                                )),
                           ],
                         ),
                       ],

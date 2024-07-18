@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:untitled13/domain/entity/auth_result_entity.dart';
 
 import 'UserDto.dart';
@@ -8,11 +10,10 @@ import 'UserDto.dart';
 
 class RegisterResponeDto {
   RegisterResponeDto({
-      this.message, 
-      this.user, 
-      this.token,
+    this.message,
+    this.user,
+    this.token,
     this.statusMsg,
-
   });
 
   RegisterResponeDto.fromJson(dynamic json) {
@@ -36,12 +37,8 @@ class RegisterResponeDto {
     map['token'] = token;
     return map;
   }
-  AuthResultEntity toAuthResultEntity(){
-    return AuthResultEntity(
-      token:token,
-      userEntity:user?.toUserEntity()
-    );
+
+  AuthResultEntity toAuthResultEntity() {
+    return AuthResultEntity(token: token, userEntity: user?.toUserEntity());
   }
-
-
 }

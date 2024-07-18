@@ -3,11 +3,11 @@ import 'package:untitled13/domain/entity/CategoryOrBrandResponEntity.dart';
 import 'package:untitled13/domain/failures.dart';
 import 'package:untitled13/domain/repository/repository/home_repository_contract.dart';
 
-class GetAllCategoriesUseCase{
+class GetAllBrandsUseCase{
   HomeRepositoryContract repositoryContract;
-  GetAllCategoriesUseCase({required this.repositoryContract});
+  GetAllBrandsUseCase({required this.repositoryContract});
 
   Future<Either<Failures, CategoryOrBrandResponseEntity>> invoke(){
-    return repositoryContract.getCategories();
+    return repositoryContract.getBrands();
   }
 }

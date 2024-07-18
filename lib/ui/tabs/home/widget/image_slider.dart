@@ -24,6 +24,18 @@ class ImageSliderShow extends StatelessWidget {
       /// The color to paint behind th indicator.
       indicatorBackgroundColor: Colors.grey,
 
+      /// Called whenever the page in the center of the viewport changes.
+      onPageChanged: (value) {
+        // print('Page changed: $value');
+      },
+
+      /// Auto scroll interval.
+      /// Do not auto scroll with null or 0.
+      autoPlayInterval: 3000,
+
+      /// Loops back to first slide.
+      isLoop: true,
+
       /// The widgets to display in the [ImageSlideshow].
       /// Add the sample image file into the images folder
       children: [
@@ -48,20 +60,7 @@ class ImageSliderShow extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-
       ],
-
-      /// Called whenever the page in the center of the viewport changes.
-      onPageChanged: (value) {
-        print('Page changed: $value');
-      },
-
-      /// Auto scroll interval.
-      /// Do not auto scroll with null or 0.
-      autoPlayInterval: 3000,
-
-      /// Loops back to first slide.
-      isLoop: true,
     );
   }
 }

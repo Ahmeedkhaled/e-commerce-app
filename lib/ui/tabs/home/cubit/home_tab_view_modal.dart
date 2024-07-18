@@ -1,28 +1,38 @@
-import 'dart:ffi';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled13/domain/entity/CategoryResponEntity.dart';
-import 'package:untitled13/domain/failures.dart';
+import 'package:untitled13/domain/entity/CategoryOrBrandResponEntity.dart';
+import 'package:untitled13/domain/use_case/get_all_brands_use_case.dart';
 import 'package:untitled13/domain/use_case/get_all_categories_use_case.dart';
 import 'package:untitled13/ui/tabs/home/cubit/home_tab_state.dart';
 
 class HomeTabViewModal extends Cubit<HomeTabState>{
   GetAllCategoriesUseCase getAllCategoriesUseCase;
-  HomeTabViewModal({required this.getAllCategoriesUseCase}):super(HomeTabInitialState());
-  List<CategoryEntity> categoriesList=[];
+  GetAllBrandsUseCase getAllBrandsUseCase;
+  HomeTabViewModal({required this.getAllCategoriesUseCase,required this.getAllBrandsUseCase}):super(HomeTabBrandInitialState());
+  List<CategoryOrBrandEntity> categoriesList=[];
+  List<CategoryOrBrandEntity> brandsList=[];
 
   void getAllCategories() async{
-    emit(HomeTabLoadingState(loadingMessage: "Loading..."));
+    emit(HomeTabCategoryLoadingState(loadingMessage: "Loading..."));
    var either=await getAllCategoriesUseCase.invoke();
    either.fold((l){
-    emit(HomeTabErrorState(error: l));
+    emit(HomeTabCategoryErrorState(error: l));
    }, (response){
      categoriesList=response.data??[];
-     emit(HomeTabSuccessState(categoryResponEntity: response));
+     emit(HomeTabCategorySuccessState(categoryResponEntity: response));
            }
    );
   }
-
+  void getAllBrands() async{
+    emit(HomeTabBrandLoadingState(loadingMessage: "Loading..."));
+   var either=await getAllCategoriesUseCase.invoke();
+   either.fold((l){
+    emit(HomeTabBrandErrorState(error: l));
+   }, (response){
+     brandsList=response.data??[];
+     emit(HomeTabBrandSuccessState(brandResponseEntity: response));
+           }
+   );
+  }
 
 }

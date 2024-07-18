@@ -4,26 +4,26 @@ import 'package:untitled13/my_theme.dart';
 import 'package:untitled13/ui/home_screen/cubit/home_screen_view_model.dart';
 import 'package:untitled13/ui/home_screen/cubit/home_screnn_states.dart';
 
-
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   static const String routeName = "home_page";
-  HomeScreenViewModel viewModel=HomeScreenViewModel();
+  HomeScreenViewModel viewModel = HomeScreenViewModel();
 
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeScreenViewModel,HomeScreenState>(
+    return BlocConsumer<HomeScreenViewModel, HomeScreenState>(
       bloc: viewModel,
-        listener: (context,state){
-
-        },
-        builder:(context, state) {
+      listener: (context, state) {},
+      builder: (context, state) {
         return SafeArea(
           child: Scaffold(
             bottomNavigationBar: Theme(
-              data: Theme.of(context).copyWith(canvasColor: MyTheme.primaryColor),
+              data:
+                  Theme.of(context).copyWith(canvasColor: MyTheme.primaryColor),
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(25),
                   topLeft: Radius.circular(25),
                 ),
@@ -60,9 +60,8 @@ class HomePage extends StatelessWidget {
             body: viewModel.tabs[viewModel.selectIndex],
           ),
         );
-        },
+      },
     );
-
   }
 
   Widget selectedItem(String image) {

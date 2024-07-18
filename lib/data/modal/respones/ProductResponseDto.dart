@@ -1,64 +1,62 @@
-class ProductResponseDto {
+// ignore_for_file: file_names
+
+import 'package:untitled13/data/modal/respones/CategoryOrBrandResponDto.dart';
+import 'package:untitled13/domain/entity/ProductResponseEntity.dart';
+
+class ProductResponseDto extends ProductResponseEntity {
   ProductResponseDto({
-      this.results, 
-      this.metadata, 
-      this.data,});
+    super.results,
+    this.metadata,
+    this.message,
+    this.statusMsg,
+    super.data,
+  });
 
   ProductResponseDto.fromJson(dynamic json) {
     results = json['results'];
-    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    message = json['message'];
+    statusMsg = json['statusMsg'];
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data?.add(Data.fromJson(v));
+        data?.add(ProductDto.fromJson(v));
       });
     }
   }
-  int? results;
   Metadata? metadata;
-  List<Data>? data;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['results'] = results;
-    if (metadata != null) {
-      map['metadata'] = metadata?.toJson();
-    }
-    if (data != null) {
-      map['data'] = data?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
-
+  String? message;
+  String? statusMsg;
 }
 
-class Data {
-  Data({
-      this.sold, 
-      this.images, 
-      this.subcategory, 
-      this.ratingsQuantity, 
-      this.id, 
-      this.title, 
-      this.slug, 
-      this.description, 
-      this.quantity, 
-      this.price, 
-      this.imageCover, 
-      this.category, 
-      this.brand, 
-      this.ratingsAverage, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.id,});
+class ProductDto extends ProductEntity {
+  ProductDto({
+    super.sold,
+    super.images,
+    super.subcategory,
+    super.ratingsQuantity,
+    super.id,
+    super.title,
+    super.slug,
+    super.description,
+    super.quantity,
+    super.price,
+    super.imageCover,
+    super.category,
+    super.brand,
+    super.ratingsAverage,
+    this.createdAt,
+    this.updatedAt,
+  });
 
-  Data.fromJson(dynamic json) {
+  ProductDto.fromJson(dynamic json) {
     sold = json['sold'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     if (json['subcategory'] != null) {
       subcategory = [];
       json['subcategory'].forEach((v) {
-        subcategory?.add(Subcategory.fromJson(v));
+        subcategory?.add(SubcategoryDto.fromJson(v));
       });
     }
     ratingsQuantity = json['ratingsQuantity'];
@@ -69,65 +67,28 @@ class Data {
     quantity = json['quantity'];
     price = json['price'];
     imageCover = json['imageCover'];
-    category = json['category'] != null ? Category.fromJson(json['category']) : null;
-    brand = json['brand'];
+    category = json['category'] != null
+        ? CategoryOrBrandDto.fromJson(json['category'])
+        : null;
+    brand = json['brand'] != null
+        ? CategoryOrBrandDto.fromJson(json['category'])
+        : null;
     ratingsAverage = json['ratingsAverage'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     id = json['id'];
   }
-  int? sold;
-  List<String>? images;
-  List<Subcategory>? subcategory;
-  int? ratingsQuantity;
-  String? id;
-  String? title;
-  String? slug;
-  String? description;
-  int? quantity;
-  int? price;
-  String? imageCover;
-  Category? category;
-  dynamic brand;
-  double? ratingsAverage;
   String? createdAt;
   String? updatedAt;
-  String? id;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['sold'] = sold;
-    map['images'] = images;
-    if (subcategory != null) {
-      map['subcategory'] = subcategory?.map((v) => v.toJson()).toList();
-    }
-    map['ratingsQuantity'] = ratingsQuantity;
-    map['_id'] = id;
-    map['title'] = title;
-    map['slug'] = slug;
-    map['description'] = description;
-    map['quantity'] = quantity;
-    map['price'] = price;
-    map['imageCover'] = imageCover;
-    if (category != null) {
-      map['category'] = category?.toJson();
-    }
-    map['brand'] = brand;
-    map['ratingsAverage'] = ratingsAverage;
-    map['createdAt'] = createdAt;
-    map['updatedAt'] = updatedAt;
-    map['id'] = id;
-    return map;
-  }
-
 }
 
 class Category {
   Category({
-      this.id, 
-      this.name, 
-      this.slug, 
-      this.image,});
+    this.id,
+    this.name,
+    this.slug,
+    this.image,
+  });
 
   Category.fromJson(dynamic json) {
     id = json['_id'];
@@ -148,44 +109,31 @@ class Category {
     map['image'] = image;
     return map;
   }
-
 }
 
-class Subcategory {
-  Subcategory({
-      this.id, 
-      this.name, 
-      this.slug, 
-      this.category,});
+class SubcategoryDto extends SubcategoryEntity {
+  SubcategoryDto({
+    super.id,
+    super.name,
+    super.slug,
+    super.category,
+  });
 
-  Subcategory.fromJson(dynamic json) {
+  SubcategoryDto.fromJson(dynamic json) {
     id = json['_id'];
     name = json['name'];
     slug = json['slug'];
     category = json['category'];
   }
-  String? id;
-  String? name;
-  String? slug;
-  String? category;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['_id'] = id;
-    map['name'] = name;
-    map['slug'] = slug;
-    map['category'] = category;
-    return map;
-  }
-
 }
 
 class Metadata {
   Metadata({
-      this.currentPage, 
-      this.numberOfPages, 
-      this.limit, 
-      this.nextPage,});
+    this.currentPage,
+    this.numberOfPages,
+    this.limit,
+    this.nextPage,
+  });
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -206,5 +154,4 @@ class Metadata {
     map['nextPage'] = nextPage;
     return map;
   }
-
 }

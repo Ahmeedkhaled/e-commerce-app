@@ -6,7 +6,9 @@ import 'package:untitled13/data/repository/repository/home_repo_imp.dart';
 import 'package:untitled13/domain/repository/data_source/auth_remote_data_source.dart';
 import 'package:untitled13/domain/repository/data_source/home_data_source.dart';
 import 'package:untitled13/domain/repository/repository/home_repository_contract.dart';
+import 'package:untitled13/domain/use_case/get_all_brands_use_case.dart';
 import 'package:untitled13/domain/use_case/get_all_categories_use_case.dart';
+import 'package:untitled13/domain/use_case/get_all_product_use_case.dart';
 import 'package:untitled13/domain/use_case/register_use_case.dart';
 
 import 'repository/repository/auth_repository_contract.dart';
@@ -31,3 +33,10 @@ HomeRepositoryContract injectHomeRepositoryContract(){
 HomeDataSource injectHomeDataSource(){
   return HomeDataSourceImpl(apiManager: ApiManager.getInstance());
 }
+GetAllBrandsUseCase injectGetAllBrandsUseCase(){
+  return GetAllBrandsUseCase(repositoryContract: injectHomeRepositoryContract());
+}
+GetAllProductUseCase injectGetAllProductUseCase(){
+  return GetAllProductUseCase(repositoryContract: injectHomeRepositoryContract());
+}
+

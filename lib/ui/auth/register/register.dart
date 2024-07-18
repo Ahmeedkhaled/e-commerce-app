@@ -10,31 +10,35 @@ import 'package:untitled13/ui/widget/text_field_item.dart';
 class RegisterScreen extends StatefulWidget {
   static const String routeName = "register";
 
+  const RegisterScreen({super.key});
+
   @override
   State<RegisterScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<RegisterScreen> {
-  RegisterScreenViewModal viewModal=RegisterScreenViewModal(registerUseCase: injectRegisterUseCase());
+  RegisterScreenViewModal viewModal =
+      RegisterScreenViewModal(registerUseCase: injectRegisterUseCase());
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegisterScreenViewModal,RegisterState>(
+    return BlocListener<RegisterScreenViewModal, RegisterState>(
       bloc: viewModal,
       listener: (context, state) {
-        if(state is RegisterLoadingState){
-          DialogUtils.showLoading(context, state.loadingMessage??"Waiting");
-        }else if(state is RegisterErrorState){
+        if (state is RegisterLoadingState) {
+          DialogUtils.showLoading(context, state.loadingMessage ?? "Waiting");
+        } else if (state is RegisterErrorState) {
           DialogUtils.hideLoading(context);
-          DialogUtils.showMessage(context,state.errorMessage??"",title:"Error",posActionName: "ok");
-        }else if(state is RegisterSuccessState){
+          DialogUtils.showMessage(context, state.errorMessage ?? "",
+              title: "Error", posActionName: "ok");
+        } else if (state is RegisterSuccessState) {
           DialogUtils.hideLoading(context);
-          DialogUtils.showMessage(context,"Register",title:"Successfully",posActionName: "ok",posAction: (){
+          DialogUtils.showMessage(context, "Register",
+              title: "Successfully", posActionName: "ok", posAction: () {
             Navigator.of(context).pushNamed(HomePage.routeName);
           });
         }
       },
-      child:
-      Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.blue,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -43,7 +47,7 @@ class _LoginScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Center(
+                  const Center(
                     child: Text(
                       "Route",
                       style: TextStyle(
@@ -52,7 +56,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                           color: Colors.white),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text(
                       "Welcome Back To Route",
@@ -62,7 +66,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Please sign in with yout mail",
                     style: TextStyle(
                       color: Colors.white70,
@@ -70,7 +74,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20.0),
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Form(
                       key: viewModal.formKey,
                       child: Column(
@@ -80,119 +84,119 @@ class _LoginScreenState extends State<RegisterScreen> {
                               fieldName: "Full Name ",
                               controller: viewModal.fullNameController,
                               hintText: "enter Your Name",
-                              validator: (value){
-                                if(value==null||value.trim().isEmpty){
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
                                   return "please enter your name";
                                 }
                                 return null;
-                              }
-                              ),
+                              }),
                           TextFieldItem(
                               fieldName: "email",
                               controller: viewModal.emailController,
                               hintText: "enter Your email",
                               keyBoardType: TextInputType.emailAddress,
-                              validator: (value){
-                                if(value==null||value.trim().isEmpty){
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
                                   return "please enter your email";
                                 }
                                 bool emailValid = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(value);
                                 if (!emailValid) {
                                   return "please enter valid email";
                                 }
                                 return null;
-                              }
-                              ),
+                              }),
                           TextFieldItem(
-                            suffixIcon: IconButton(onPressed: (){
-                              viewModal.isObscure=!viewModal.isObscure;
-                              setState(() {
-
-                              });
-
-                            }, icon: viewModal.isObscure?Icon(Icons.visibility_off):Icon(Icons.visibility)),
-                            keyBoardType: TextInputType.number,
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    viewModal.isObscure = !viewModal.isObscure;
+                                    setState(() {});
+                                  },
+                                  icon: viewModal.isObscure
+                                      ? const Icon(Icons.visibility_off)
+                                      : const Icon(Icons.visibility)),
+                              keyBoardType: TextInputType.number,
                               fieldName: "Password",
-                              IsObscure:viewModal.isObscure ,
+                              isObscure: viewModal.isObscure,
                               controller: viewModal.passwordController,
                               hintText: "enter Your Password",
-                              validator: (value){
-                                if(value==null||value.trim().isEmpty){
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
                                   return "please enter your Password";
                                 }
-                                if(value.trim().length<6||value.trim().length>30){
+                                if (value.trim().length < 6 ||
+                                    value.trim().length > 30) {
                                   return "password should be >6&<30";
                                 }
                                 return null;
-                              }
-                              ),
+                              }),
                           TextFieldItem(
-                            suffixIcon: IconButton(onPressed: (){
-                              viewModal.isObscure=!viewModal.isObscure;
-                              setState(() {
-
-                              });
-
-                            }, icon: viewModal.isObscure?Icon(Icons.visibility_off):Icon(Icons.visibility)),
-                            keyBoardType: TextInputType.number,
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    viewModal.isObscure = !viewModal.isObscure;
+                                    setState(() {});
+                                  },
+                                  icon: viewModal.isObscure
+                                      ? const Icon(Icons.visibility_off)
+                                      : const Icon(Icons.visibility)),
+                              keyBoardType: TextInputType.number,
                               fieldName: "confirmationPassword",
-                              IsObscure:viewModal.isObscure ,
-                              controller: viewModal.confirmationPasswordController,
+                              isObscure: viewModal.isObscure,
+                              controller:
+                                  viewModal.confirmationPasswordController,
                               hintText: "enter Your confirmationPassword",
-                              validator: (value){
-                                if(value==null||value.trim().isEmpty){
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
                                   return "please enter your confirmationPassword";
                                 }
-                                if(value.trim().length<6||value.trim().length>30){
+                                if (value.trim().length < 6 ||
+                                    value.trim().length > 30) {
                                   return "confirmationPassword should be >6&<30";
                                 }
-                                if (value != viewModal.passwordController.text) {
+                                if (value !=
+                                    viewModal.passwordController.text) {
                                   return "confirmPassword doesn't match";
                                 }
                                 return null;
-                              }
-                              ),
+                              }),
                           TextFieldItem(
-                            keyBoardType: TextInputType.number,
+                              keyBoardType: TextInputType.number,
                               fieldName: "Phone Number",
                               controller: viewModal.numberController,
                               hintText: "enter Your Phone",
-                              validator: (value){
-                                if(value==null||value.trim().isEmpty){
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
                                   return "please enter your phone";
                                 }
-                                if(value.trim().length<11||value.trim().length>11){
+                                if (value.trim().length < 11 ||
+                                    value.trim().length > 11) {
                                   return "password should be 11";
                                 }
                                 return null;
-                              }
-                              ),
-                          SizedBox(height: 20,),
+                              }),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           ElevatedButton(
-                              onPressed: (){
-                                viewModal.register();
-                              },
-                              child:Padding(
-                                padding:  EdgeInsets.all(15.0),
-                                child: Text("Sign Up",style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 18
-                                ),),
-                              ),
+                            onPressed: () {
+                              viewModal.register();
+                            },
                             style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                Colors.white
-                              ),
-                              shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)
-                                )
-                              ),
-
+                              backgroundColor:
+                                  const WidgetStatePropertyAll(Colors.white),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12))),
                             ),
-
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Text(
+                                "Sign Up",
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 18),
+                              ),
+                            ),
                           )
                         ],
                       ),
@@ -206,5 +210,4 @@ class _LoginScreenState extends State<RegisterScreen> {
       ),
     );
   }
-  }
-
+}

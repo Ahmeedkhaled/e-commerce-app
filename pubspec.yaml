@@ -41,7 +41,7 @@ dependencies:
   connectivity_plus: ^5.0.1
   bloc: ^8.1.2
   flutter_image_slideshow: ^0.1.6
-
+  readmore: ^2.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

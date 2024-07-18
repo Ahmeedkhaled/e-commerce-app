@@ -1,17 +1,30 @@
-import 'package:untitled13/domain/entity/CategoryResponEntity.dart';
+import 'package:untitled13/domain/entity/CategoryOrBrandResponEntity.dart';
 import 'package:untitled13/domain/failures.dart';
 
 abstract class HomeTabState{}
-class HomeTabInitialState extends HomeTabState{}
-class HomeTabLoadingState extends HomeTabState{
+class HomeTabCategoryInitialState extends HomeTabState{}
+class HomeTabCategoryLoadingState extends HomeTabState{
   String? loadingMessage;
-  HomeTabLoadingState({required this.loadingMessage});
+  HomeTabCategoryLoadingState({required this.loadingMessage});
 }
-class HomeTabErrorState extends HomeTabState{
+class HomeTabCategoryErrorState extends HomeTabState{
   Failures error;
-  HomeTabErrorState({required this.error});
+  HomeTabCategoryErrorState({required this.error});
 }
-class HomeTabSuccessState extends HomeTabState{
-  CategoryResponEntity categoryResponEntity;
-  HomeTabSuccessState({required this.categoryResponEntity});
+class HomeTabCategorySuccessState extends HomeTabState{
+  CategoryOrBrandResponseEntity categoryResponEntity;
+  HomeTabCategorySuccessState({required this.categoryResponEntity});
+}
+class HomeTabBrandInitialState extends HomeTabState{}
+class HomeTabBrandLoadingState extends HomeTabState{
+  String? loadingMessage;
+  HomeTabBrandLoadingState({required this.loadingMessage});
+}
+class HomeTabBrandErrorState extends HomeTabState{
+  Failures error;
+  HomeTabBrandErrorState({required this.error});
+}
+class HomeTabBrandSuccessState extends HomeTabState{
+  CategoryOrBrandResponseEntity brandResponseEntity;
+  HomeTabBrandSuccessState({required this.brandResponseEntity});
 }

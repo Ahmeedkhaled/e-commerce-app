@@ -1,28 +1,25 @@
-class CategoryResponEntity {
-  CategoryResponEntity({
-      this.results, 
-      this.data,});
+// ignore_for_file: file_names
+
+class CategoryOrBrandResponseEntity {
+  CategoryOrBrandResponseEntity({
+    this.results,
+    this.data,
+  });
 
   int? results;
-  List<CategoryEntity>? data;
-
-
+  List<CategoryOrBrandEntity>? data;
 }
 
-class CategoryEntity {
-  CategoryEntity({
-      this.id, 
-      this.name, 
-      this.slug, 
-      this.image, 
-      });
+class CategoryOrBrandEntity {
+  CategoryOrBrandEntity({
+    this.id,
+    this.name,
+    this.slug,
+    this.image,
+  });
 
   String? id;
   String? name;
   String? slug;
   String? image;
-
-
-
 }
-

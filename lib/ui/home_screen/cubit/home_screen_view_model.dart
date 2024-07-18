@@ -6,15 +6,18 @@ import 'package:untitled13/ui/tabs/home/home_tab.dart';
 import 'package:untitled13/ui/tabs/list/list_tab.dart';
 import 'package:untitled13/ui/tabs/profile/profile_tab.dart';
 
-class HomeScreenViewModel extends Cubit<HomeScreenState>{
-  HomeScreenViewModel():super(HomeScreenInitialState());
+class HomeScreenViewModel extends Cubit<HomeScreenState> {
+  HomeScreenViewModel() : super(HomeScreenInitialState());
   int selectIndex = 0;
-  List<Widget> tabs = [HomeTab(), ListTab(), FavoriteTab(), ProfileTab()];
-  void changeBottomNavBar(int newSelectedIndex){
+  List<Widget> tabs = [
+    HomeTab(),
+    ListTab(),
+    const FavoriteTab(),
+    const ProfileTab()
+  ];
+  void changeBottomNavBar(int newSelectedIndex) {
     HomeScreenInitialState();
-    selectIndex=newSelectedIndex;
+    selectIndex = newSelectedIndex;
     emit(ChangeNavigationBar());
   }
-
-
 }

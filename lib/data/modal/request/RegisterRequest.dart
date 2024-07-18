@@ -1,16 +1,13 @@
-/// name : "Ahmed Abd Al-Muti"
-/// email : "ahmedl996@gmail.com"
-/// password : "Ahmed@123"
-/// rePassword : "Ahmed@123"
-/// phone : "01010700701"
+// ignore_for_file: file_names
 
 class RegisterRequest {
   RegisterRequest({
-      this.name, 
-      this.email, 
-      this.password, 
-      this.rePassword, 
-      this.phone,});
+    this.name,
+    this.email,
+    this.password,
+    this.rePassword,
+    this.phone,
+  });
 
   RegisterRequest.fromJson(dynamic json) {
     name = json['name'];
@@ -34,5 +31,4 @@ class RegisterRequest {
     map['phone'] = phone;
     return map;
   }
-
 }

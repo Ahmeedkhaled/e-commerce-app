@@ -1,14 +1,13 @@
-import 'package:untitled13/domain/entity/UserEntity.dart';
+// ignore_for_file: file_names
 
-/// name : "Ahmed Abd Al-Muti"
-/// email : "ahmedl996@gmail.com"
-/// role : "user"
+import 'package:untitled13/domain/entity/UserEntity.dart';
 
 class UserDto {
   UserDto({
-      this.name, 
-      this.email, 
-      this.role,});
+    this.name,
+    this.email,
+    this.role,
+  });
 
   UserDto.fromJson(dynamic json) {
     name = json['name'];
@@ -26,11 +25,8 @@ class UserDto {
     map['role'] = role;
     return map;
   }
-  UserEntity toUserEntity(){
-    return UserEntity(
-      name: name,
-      email: email
-    );
-  }
 
+  UserEntity toUserEntity() {
+    return UserEntity(name: name, email: email);
+  }
 }
